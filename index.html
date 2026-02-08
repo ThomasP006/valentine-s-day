@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pour Sarah ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pastel-pink: #FFE5EC;
+            --cream-white: #FFFBF5;
+            --soft-red: #DC143C;
+            --pure-white: #FFFFFF;
+            --shadow-subtle: rgba(220, 20, 60, 0.08);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, #FFD6E0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Effet de particules de cœurs subtils en arrière-plan */
+        .heart-particle {
+            position: absolute;
+            opacity: 0.15;
+            animation: float 15s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.15;
+            }
+            90% {
+                opacity: 0.05;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: var(--cream-white);
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px var(--shadow-subtle);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: #2C2C2C;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .name {
+            font-weight: 600;
+            color: var(--soft-red);
+            display: block;
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .question {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            color: #5C5C5C;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .warning-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: #888;
+            margin-top: 2rem;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 200px;
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-yes {
+            background: var(--soft-red);
+            color: white;
+            position: relative;
+        }
+
+        .btn-yes:hover {
+            background: #B8112A;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.3);
+        }
+
+        .btn-no {
+            background: white;
+            color: #5C5C5C;
+            border: 2px solid #E5E5E5;
+            position: absolute;
+            transition: none;
+        }
+
+        .btn-no:hover {
+            background: #F8F8F8;
+        }
+
+        /* Animation de célébration */
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 229, 236, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .celebration.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .celebration-content {
+            text-align: center;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .celebration h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: var(--soft-red);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .celebration p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: #2C2C2C;
+            font-weight: 300;
+        }
+
+        /* Confettis de cœurs */
+        .heart-confetti {
+            position: fixed;
+            font-size: 2rem;
+            animation: fall 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 3rem 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .name {
+                font-size: 2.5rem;
+            }
+
+            .question {
+                font-size: 1rem;
+            }
+
+            .buttons-container {
+                min-height: 250px;
+            }
+
+            button {
+                padding: 0.9rem 2.5rem;
+                font-size: 1rem;
+            }
+
+            .celebration h2 {
+                font-size: 3rem;
+            }
+
+            .celebration p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particules de cœurs en arrière-plan -->
+    <div class="heart-particle" style="left: 10%; animation-delay: 0s; font-size: 2rem;">❤️</div>
+    <div class="heart-particle" style="left: 30%; animation-delay: 3s; font-size: 1.5rem;">💕</div>
+    <div class="heart-particle" style="left: 50%; animation-delay: 6s; font-size: 2.5rem;">💖</div>
+    <div class="heart-particle" style="left: 70%; animation-delay: 9s; font-size: 1.8rem;">💗</div>
+    <div class="heart-particle" style="left: 85%; animation-delay: 12s; font-size: 2rem;">💝</div>
+
+    <div class="container">
+        <h1>
+            <span class="name">Sarah,</span>
+            avant de devenir ma femme<br>
+            veux-tu devenir ma valentine ?
+        </h1>
+        <p class="question">❤️</p>
+        
+        <div class="buttons-container">
+            <button class="btn-yes" onclick="handleYes()">Oui</button>
+            <button class="btn-no" id="btnNo">Non</button>
+        </div>
+        
+        <p class="warning-text">Je te conseille pas de mettre Non 🫦</p>
+    </div>
+
+    <div class="celebration" id="celebration">
+        <div class="celebration-content">
+            <h2>Je t'aime ! ❤️</h2>
+            <p>Tu me rends tellement heureux !</p>
+        </div>
+    </div>
+
+    <script>
+        const btnNo = document.getElementById('btnNo');
+        const buttonsContainer = document.querySelector('.buttons-container');
+        let noButtonX = 0;
+        let noButtonY = 0;
+
+        // Initialiser la position du bouton Non
+        function initNoButton() {
+            const containerRect = buttonsContainer.getBoundingClientRect();
+            const yesButton = document.querySelector('.btn-yes');
+            const yesRect = yesButton.getBoundingClientRect();
+            const noRect = btnNo.getBoundingClientRect();
+            
+            // Position relative du Oui par rapport au conteneur
+            const yesRelativeLeft = yesRect.left - containerRect.left;
+            const yesRelativeTop = yesRect.top - containerRect.top;
+            
+            // Centre du conteneur
+            const centerX = containerRect.width / 2;
+            
+            // Distance du Oui au centre
+            const yesCenterX = yesRelativeLeft + yesRect.width / 2;
+            const distanceFromCenter = centerX - yesCenterX;
+            
+            // Positionner le Non symétriquement
+            const noCenterX = centerX + distanceFromCenter;
+            noButtonX = noCenterX - noRect.width / 2;
+            noButtonY = yesRelativeTop;
+            
+            updateNoButtonPosition();
+        }
+
+        function updateNoButtonPosition() {
+            btnNo.style.left = noButtonX + 'px';
+            btnNo.style.top = noButtonY + 'px';
+        }
+
+        // Détecter la position de la souris et faire fuir le bouton
+        buttonsContainer.addEventListener('mousemove', (e) => {
+            const containerRect = buttonsContainer.getBoundingClientRect();
+            const buttonRect = btnNo.getBoundingClientRect();
+            
+            // Position de la souris relative au conteneur
+            const mouseX = e.clientX - containerRect.left;
+            const mouseY = e.clientY - containerRect.top;
+            
+            // Centre du bouton
+            const buttonCenterX = noButtonX + buttonRect.width / 2;
+            const buttonCenterY = noButtonY + buttonRect.height / 2;
+            
+            // Distance entre la souris et le bouton
+            const distanceX = mouseX - buttonCenterX;
+            const distanceY = mouseY - buttonCenterY;
+            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+            
+            // Zone de détection (le bouton commence à fuir quand la souris est à moins de 150px)
+            const detectionRadius = 150;
+            
+            if (distance < detectionRadius) {
+                // Calculer la direction opposée
+                const angle = Math.atan2(distanceY, distanceX);
+                const escapeAngle = angle + Math.PI; // Direction opposée
+                
+                // Vitesse de fuite proportionnelle à la proximité
+                const escapeSpeed = (detectionRadius - distance) / 3;
+                
+                // Nouvelle position
+                noButtonX += Math.cos(escapeAngle) * escapeSpeed;
+                noButtonY += Math.sin(escapeAngle) * escapeSpeed;
+                
+                // Limites pour garder le bouton dans le conteneur
+                const maxX = containerRect.width - buttonRect.width - 20;
+                const maxY = containerRect.height - buttonRect.height - 20;
+                const minX = 20;
+                const minY = -80;
+                
+                // Si le bouton atteint un bord, le faire rebondir dans une direction aléatoire
+                if (noButtonX <= minX || noButtonX >= maxX) {
+                    noButtonX = Math.max(minX, Math.min(maxX, noButtonX));
+                    // Ajouter un mouvement aléatoire pour éviter que le bouton reste coincé
+                    noButtonY += (Math.random() - 0.5) * 50;
+                }
+                
+                if (noButtonY <= minY || noButtonY >= maxY) {
+                    noButtonY = Math.max(minY, Math.min(maxY, noButtonY));
+                    noButtonX += (Math.random() - 0.5) * 50;
+                }
+                
+                // Assurer que le bouton reste dans les limites
+                noButtonX = Math.max(minX, Math.min(maxX, noButtonX));
+                noButtonY = Math.max(minY, Math.min(maxY, noButtonY));
+                
+                updateNoButtonPosition();
+            }
+        });
+
+        // Empêcher le clic sur le bouton Non
+        btnNo.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Faire sauter le bouton plus loin
+            const containerRect = buttonsContainer.getBoundingClientRect();
+            const maxX = containerRect.width - btnNo.offsetWidth - 20;
+            const maxY = containerRect.height - btnNo.offsetHeight - 20;
+            
+            noButtonX = Math.random() * maxX;
+            noButtonY = Math.random() * maxY - 40;
+            updateNoButtonPosition();
+        });
+
+        function handleYes() {
+            const celebration = document.getElementById('celebration');
+            celebration.classList.add('active');
+            
+            // Créer des confettis de cœurs
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    createHeartConfetti();
+                }, i * 100);
+            }
+        }
+
+        function createHeartConfetti() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💝', '💓'];
+            const confetti = document.createElement('div');
+            confetti.className = 'heart-confetti';
+            confetti.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            confetti.style.animationDelay = Math.random() * 0.5 + 's';
+            
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                confetti.remove();
+            }, 4000);
+        }
+
+        // Initialiser au chargement de la page
+        window.addEventListener('load', initNoButton);
+    </script>
+</body>
+</html>
